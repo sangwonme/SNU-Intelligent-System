@@ -23,6 +23,8 @@ function [optimal_seq] = hmm_viterbi(hmm,observation)
         max_prob(:, i) = hmm_normalize(tmp);
     end
     
+    max_prob
+    
     % backtracking to find state sequence
     optimal_seq = zeros(size(observation));
     for i = length(observation) : -1 : 1
