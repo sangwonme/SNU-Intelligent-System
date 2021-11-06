@@ -24,14 +24,17 @@ function [optimal_seq] = hmm_viterbi(hmm,observation)
     end
     
     % backtracking to find state sequence
-    optimal_seq = zeros(size(observation));
+    optimal_seq_num = zeros(size(observation));
+    optimal_seq = strings(size(observation));
+    weather_list = ["Sunny", "Cloudy", "Rainy"];
     for i = length(observation) : -1 : 1
         if i == length(observation)
             [~, current_state] = max(max_prob(:, i));
         else
-            current_state = arg_max(optimal_seq(i + 1), i + 1);
+            current_state = arg_max(optimal_seq_num(i + 1), i + 1);
         end
-        optimal_seq(i) = current_state;
+        optimal_seq_num(i) = current_state;
+        optimal_seq(i) = weather_list(current_state);
     end
 end
 
